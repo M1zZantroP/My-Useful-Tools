@@ -6,4 +6,6 @@ This is a cross-platform console program what supports in Linux/Win/MacOS. Its c
 
 P.S. Your files may also have other names. The result is not affected.
 
-2. 
+2. **Spotihelper**
+
+Tool for improving your Spotify experience. You may add all songs from different singers into your own playlist.
