@@ -1,4 +1,5 @@
 import clipboard
+from sys import argv
 
 EN_UA = {'Q': 'Й', 'W': 'Ц', 'E': 'У', 'R': 'К', 'T': 'Е', 'Y': 'Н', 'U': 'Г', 'I': 'Ш', 'O': 'Щ', 'P': 'З', '{': 'Х',
          '}': 'Ї', 'A': 'Ф', 'S': 'І', 'D': 'В', 'F': 'А', 'G': 'П', 'H': 'Р', 'J': 'О', 'K': 'Л', 'L': 'Д', ':': 'Ж',
@@ -7,6 +8,30 @@ EN_UA = {'Q': 'Й', 'W': 'Ц', 'E': 'У', 'R': 'К', 'T': 'Е', 'Y': 'Н', 'U': 
          '[': 'х', ']': 'ї', 'a': 'ф', 's': 'і', 'd': 'в', 'f': 'а', 'g': 'п', 'h': 'р', 'j': 'о', 'k': 'л', 'l': 'д',
          ';': 'ж', 'z': 'я', 'x': 'ч', 'c': 'с', 'v': 'м', 'b': 'и', 'n': 'т', 'm': 'ь', ',': 'б', '.': 'ю', '/': '.',
          "`": "'", "'": "є", '\\': 'ґ'}
+
+
+def fix_caps(line: str) -> str:
+    line = line.strip()
+    line_ = ''
+    if line[0].isupper():
+        for letter in line:
+            if letter.isalpha():
+                if letter.isupper():
+                    line_ += letter.lower()
+                else:
+                    line_ += letter.upper()
+            else:
+                line_ += letter
+    else:
+        for letter in line:
+            if letter.isalpha():
+                if letter.islower():
+                    line_ += letter.upper()
+                else:
+                    line_ += letter.lower()
+            else:
+                line_ += letter
+    return line_
 
 
 def choose_translate_language(line: str) -> bool:
@@ -33,10 +58,19 @@ def translate(line: str) -> str:
 
 
 if __name__ == '__main__':
-    try:
-        incorrect_line = clipboard.paste()
-        assert incorrect_line
-        result = translate(incorrect_line)
-        clipboard.copy(result)
-    except AssertionError as _e:
-        exit()
+    if len(argv) > 1:
+        try:
+            incorrect_line = clipboard.paste()
+            assert incorrect_line
+            result = fix_caps(incorrect_line)
+            clipboard.copy(result)
+        except AssertionError as _e:
+            exit()
+    else:
+        try:
+            incorrect_line = clipboard.paste()
+            assert incorrect_line
+            result = translate(incorrect_line)
+            clipboard.copy(result)
+        except AssertionError as _e:
+            exit()
