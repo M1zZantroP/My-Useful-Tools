@@ -31,7 +31,7 @@ main() {
 		sudo apt install software-properties-common -y
 		sudo add-apt-repository ppa:deadsnakes/ppa -y
 		sudo apt-get install -y vim tmux htop git curl wget unzip zip gcc build-essential make nginx postgresql postgresql-contrib python3.10 python3.10-dev python3.10-venv libpq-dev python3-pip
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" ----keep-zshrc
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" --keep-zshrc
 		sudo localedef uk_UA.UTF-8 -i uk_UA -fUTF-8;export LANGUAGE=uk_UA.UTF-8;export LANG=uk_UA.UTF-8;export LC_ALL=uk_UA.UTF-8 ;sudo locale-gen uk_UA.UTF-8 ;sudo dpkg-reconfigure locales
 		sudo echo '\nexport LANGUAGE=uk_UA.UTF-8\nexport LANG=uk_UA.UTF-8\nexport LC_ALL=uk_UA.UTF-8' >> /etc/profile
 		sudo systemctl start postgresql.service; sudo systemctl enable postgresql
